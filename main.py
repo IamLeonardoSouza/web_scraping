@@ -1,5 +1,6 @@
 from scraper.config_loader import load_config
 from scraper.pagination_handler import handle_pagination
+from loguru import logger
 
 
 def main() -> None:
@@ -15,6 +16,8 @@ def main() -> None:
     Returns:
         None
     """
+    logger.info("Starting the scraping process.")
+    
     config = load_config()
     base_url = config["base_url"]
     
