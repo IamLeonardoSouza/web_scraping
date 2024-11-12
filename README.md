@@ -7,9 +7,7 @@ This project allows you to perform web scraping in a modular way, configuring da
 1. Edit the `config/config.json` file to define the URL and selectors you want to use.
 2. Run the script with the command:
 
-```
-python main.py
-
+```python main.py
 ```
 
 3. The data will be saved in an `output.json` or `output.csv` file.
@@ -27,7 +25,5 @@ python main.py
 
 Install dependencies with the command:
 
-```
-pip install -r requirements.txt
-
+```pip install -r requirements.txt
 ```
