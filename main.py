@@ -4,7 +4,11 @@ from scraper.pagination_handler import handle_pagination
 def main():
     config = load_config()
     base_url = config["base_url"]
-    data = handle_pagination(base_url, config)
+    
+    # Escolha o navegador: "chrome", "firefox", "opera"
+    browser_name = "chrome"
+    
+    data = handle_pagination(base_url, config, browser_name)
     print(data)
 
 if __name__ == "__main__":

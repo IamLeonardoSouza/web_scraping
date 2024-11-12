@@ -1,23 +1,21 @@
-import requests
-from bs4 import BeautifulSoup
+from config.selenium_config import get_driver, visible_keys
+from selenium.webdriver.common.by import By 
 
-# Função para coletar dados de uma página
-def scrape_page(url, config):
-    headers = {"User-Agent": "Mozilla/5.0"}
-    response = requests.get(url, headers=headers)
-
-    if response.status_code != 200:
-        print(f"Erro ao acessar a página: {url}")
-        return None
-
-    soup = BeautifulSoup(response.text, "html.parser")
+def scrape_page(url, config, browser_name="chrome"):
+    """Realiza o scraping de uma página usando o navegador configurado."""
+    # Obter o driver do navegador
+    driver = get_driver(browser_name)
+    
+    driver.get(url)
+    
     data = {}
 
     for key, value in config["data_selectors"].items():
-        selector = soup.select(value["selector"])
+        elements = driver.find_elements(By.CSS_SELECTOR, value["selector"])  # Usando By corretamente
         if value["type"] == "text":
-            data[key] = selector[0].get_text() if selector else None
+            data[key] = elements[0].text if elements else None
         elif value["type"] == "attribute" and "attribute" in value:
-            data[key] = selector[0].get(value["attribute"]) if selector else None
+            data[key] = elements[0].get_attribute(value["attribute"]) if elements else None
 
+    driver.quit()  # Fechar o navegador após o scraping
     return data
