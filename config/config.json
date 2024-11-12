@@ -1,0 +1,23 @@
+{
+    "base_url": "https://exemplo.com/produtos",
+    "data_selectors": {
+        "product_title": {
+            "selector": ".produto-nome",
+            "type": "text"
+        },
+        "product_price": {
+            "selector": ".produto-preco",
+            "type": "text"
+        },
+        "product_image": {
+            "selector": ".produto-imagem img",
+            "type": "attribute",
+            "attribute": "src"
+        }
+    },
+    "pagination": {
+        "next_button_selector": ".next",
+        "enabled": true
+    }
+}
+ 
